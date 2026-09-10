@@ -1,20 +1,8 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://ai.google.dev/static/site-assets/images/share-ais-513315318.png" />
-</div>
-
-# Run and deploy your AI Studio app
-
-This contains everything you need to run your app locally.
-
-View your app in AI Studio: https://ai.studio/apps/b892d796-4b32-495e-b5f8-207db6fd7e61
-
-## Run Locally
-
-**Prerequisites:**  Node.js
+Architectural Overview & Tri-Model EngineWeatherGPT India integrates three core predictive machine learning pipelines:1-Hour Weather Forecast Model (Nowcast-XGBoost-ConvLSTM-v4.2): Real-time high-frequency telemetry tracking temperature, wind vectors, precipitation probability, AQI status, and hourly trends.  3-Hour Disaster Risk Early Warning Model (EarlyWarning-RandomForest-Ensemble-v3.8): Hazard assessment monitoring urban flash floods, tropical cyclones, slope landslides, heatwaves, and severe smog with active NDMA protocols.  Agro-Meteorological Crop Intelligence Model (CropIntel-BioMet-v2.5): Comprehensive crop suitability scoring, soil moisture status, pest risk detection, GDD accumulation, and localized irrigation/fertilizer advisories across 10 supported crops.  Key Features130 Monitored Stations Master Matrix: Full geographical coverage across Northern, Western, Southern, Central & Eastern, and North-Eastern regions.  PostGIS Spatial Snapping Engine: Automatically snaps any custom GPS coordinate within India to the nearest monitored meteorological station with precise distance and bearing calculations (/api/nearest).  Gemini AI Intelligence Analyst: Custom AI synthesis powered by Google GenAI (@google/genai) providing deep tactical briefings and regional risk analyses.  Multi-View Interface: Seamlessly toggle between the Interactive Leaflet Map, 3D Globe Simulator, Mobile App Simulator, and the 130 Cities Master Matrix.  Hazard Radar Geofence Alert System: Real-time alert tracking for severe meteorological and disaster events with spatial buffer zones.  Tech StackFrontend: React 19, TypeScript, Vite, Tailwind CSS v4, Leaflet, Lucide React, Motion  Backend: Node.js, Express, TypeScript (tsx)  AI Integration: @google/genai SDK (gemini-3.8-flash)  Getting StartedPrerequisitesNode.js (v18 or higher recommended)Google Gemini API Key (GEMINI_API_KEY)Installation & Environment SetupClone the repository and install dependencies:Bashnpm install
 
 
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+Create a .env file in the root directory and configure your Gemini API key:Code snippetGEMINI_API_KEY=your_gemini_api_key_here
+Running the ApplicationDevelopment Mode:Bashnpm run dev
+Starts the Express server with Vite middleware on http://localhost:3000.  Production Build:Bashnpm run build
+npm start
+API ReferenceHealth Check: GET /api/health — Returns platform status, active model versions, and system telemetry.  All Cities Overview: GET /api/cities — Fetches model outputs for all 130 monitored cities.  1-Hour Weather Predict: GET /predict/weather/:city_id (or /api/predict/weather/:city_id)  3-Hour Disaster Early Warning: GET /predict/disaster/:city_id (or /api/predict/disaster/:city_id)  Agro Crop Advisory: GET /advisory/:city_id?crop=... (or /api/advisory/:city_id)  Spatial GPS Snapping: GET /api/nearest?lat=...&lng=... — Snaps arbitrary coordinates to the nearest station  AI Deep Analysis: POST /api/ai/deep-analysis — Generates custom Gemini tactical briefing reports  
