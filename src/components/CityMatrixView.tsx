@@ -1,17 +1,14 @@
 import React, { useState } from 'react';
-import { CityModelOutput, RegionName } from '../types.ts';
+import { CityModelOutput } from '../types.ts';
 import {
   Search,
   Download,
-  Filter,
   ArrowUpDown,
   ExternalLink,
   ShieldAlert,
   CloudSun,
   Sprout,
   Compass,
-  CheckCircle2,
-  AlertTriangle,
 } from 'lucide-react';
 
 interface CityMatrixViewProps {
@@ -54,7 +51,6 @@ export const CityMatrixView: React.FC<CityMatrixViewProps> = ({
     else if (sortBy === 'temp') comp = a.weather.tempC - b.weather.tempC;
     else if (sortBy === 'risk') comp = a.disaster.riskScore - b.disaster.riskScore;
     else if (sortBy === 'agro') comp = a.agro.suitabilityScore - b.agro.suitabilityScore;
-
     return sortAsc ? comp : -comp;
   });
 
@@ -283,7 +279,6 @@ export const CityMatrixView: React.FC<CityMatrixViewProps> = ({
                   <td className="p-3 font-bold text-slate-400 group-hover:text-cyan-400">
                     #{c.city.id}
                   </td>
-
                   {/* City Name */}
                   <td className="p-3">
                     <div className="font-bold text-white text-sm group-hover:text-cyan-300">
@@ -291,7 +286,6 @@ export const CityMatrixView: React.FC<CityMatrixViewProps> = ({
                     </div>
                     <span className="text-[10px] text-slate-500">{c.city.region}</span>
                   </td>
-
                   {/* State & Zone */}
                   <td className="p-3">
                     <div className="text-slate-200">{c.city.state}</div>
@@ -299,12 +293,10 @@ export const CityMatrixView: React.FC<CityMatrixViewProps> = ({
                       {c.city.zone}
                     </span>
                   </td>
-
                   {/* Coordinates */}
                   <td className="p-3 text-[11px] text-slate-400 whitespace-nowrap">
                     {c.city.lat.toFixed(2)}°N, {c.city.lng.toFixed(2)}°E
                   </td>
-
                   {/* Model 1: 1-Hour Weather */}
                   <td className="p-3">
                     <div className="flex items-center gap-2">
@@ -317,7 +309,6 @@ export const CityMatrixView: React.FC<CityMatrixViewProps> = ({
                       Rain: {c.weather.precipitationMm} mm • AQI: {c.weather.aqi}
                     </div>
                   </td>
-
                   {/* Model 2: 3-Hour Disaster Risk */}
                   <td className="p-3">
                     <div className="flex items-center gap-2">
@@ -342,7 +333,6 @@ export const CityMatrixView: React.FC<CityMatrixViewProps> = ({
                       Lead: {c.disaster.leadTime}
                     </span>
                   </td>
-
                   {/* Model 3: Agro Crop Intelligence */}
                   <td className="p-3">
                     <div className="flex items-center gap-1.5">
@@ -353,7 +343,6 @@ export const CityMatrixView: React.FC<CityMatrixViewProps> = ({
                       Moisture: {c.agro.soilMoisturePct}% ({c.agro.soilStatus})
                     </span>
                   </td>
-
                   {/* Actions */}
                   <td className="p-3 text-right">
                     <div className="flex items-center justify-end gap-1">

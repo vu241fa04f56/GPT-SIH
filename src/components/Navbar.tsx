@@ -3,7 +3,6 @@ import {
   CloudSun,
   ShieldAlert,
   Sprout,
-  Compass,
   Globe,
   Map as MapIcon,
   Smartphone,
@@ -42,7 +41,7 @@ export const Navbar: React.FC<NavbarProps> = ({
   onSelectModelTab,
   activeViewStyle,
   onSelectViewStyle,
-  selectedCity,
+  selectedCity: _selectedCity,
   onOpenGPSSnapper,
   onOpenAIAnalyst,
   onOpenSearch,
@@ -117,7 +116,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             }`}
           >
             <Globe className="w-3.5 h-3.5" />
-            <span>3D Globe (5173)</span>
+            <span>3D Globe</span>
           </button>
           <button
             id="btn-view-mobile"
@@ -129,7 +128,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             }`}
           >
             <Smartphone className="w-3.5 h-3.5" />
-            <span>Mobile App (8082)</span>
+            <span>Mobile App</span>
           </button>
           <button
             id="btn-view-matrix"
@@ -237,6 +236,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             <Layers className="w-3 h-3 text-cyan-400" />
             <span>Tri-Model Overview</span>
           </button>
+
           <button
             id="tab-model-weather"
             onClick={() => onSelectModelTab('weather')}
@@ -249,6 +249,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             <CloudSun className="w-3 h-3 text-cyan-400" />
             <span>1-Hour Weather</span>
           </button>
+
           <button
             id="tab-model-disaster"
             onClick={() => onSelectModelTab('disaster')}
@@ -266,6 +267,7 @@ export const Navbar: React.FC<NavbarProps> = ({
               </span>
             )}
           </button>
+
           <button
             id="tab-model-agro"
             onClick={() => onSelectModelTab('agro')}

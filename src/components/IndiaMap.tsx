@@ -6,23 +6,13 @@ import {
   NearestStationResult,
 } from '../types.ts';
 import {
-  calculateBearingDeg,
-  calculateHaversineDistanceKm,
   snapCoordinatesToNearestStation,
 } from '../data/citiesData.ts';
 import { RadarAlert, UserLocation } from '../services/alertSystem.ts';
 import {
-  Layers,
   Crosshair,
-  Maximize2,
-  Minimize2,
   Compass,
-  AlertTriangle,
-  Flame,
-  CloudRain,
-  Sprout,
   Navigation,
-  CheckCircle2,
   X,
   Radio,
 } from 'lucide-react';
@@ -91,7 +81,6 @@ export const IndiaMap: React.FC<IndiaMapProps> = ({
         className: 'tactical-dark-tiles',
       }
     ).addTo(map);
-
     currentTileLayerRef.current = tileLayer;
 
     const radarCirclesGroup = L.layerGroup().addTo(map);
@@ -103,12 +92,14 @@ export const IndiaMap: React.FC<IndiaMapProps> = ({
     snapLineLayerRef.current = snapLineGroup;
     userLocationLayerRef.current = userLocationGroup;
     markersLayerRef.current = markersGroup;
+
     mapInstanceRef.current = map;
 
     // Track mouse coordinates
     map.on('mousemove', (e: L.LeafletMouseEvent) => {
       setCursorCoords({ lat: e.latlng.lat, lng: e.latlng.lng });
     });
+
     map.on('mouseout', () => {
       setCursorCoords(null);
     });
@@ -145,7 +136,6 @@ export const IndiaMap: React.FC<IndiaMapProps> = ({
     }
 
     let newLayer: L.TileLayer;
-
     if (tileLayerType === 'satellite') {
       newLayer = L.tileLayer(
         'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
@@ -203,6 +193,7 @@ export const IndiaMap: React.FC<IndiaMapProps> = ({
         fillColor: '#f43f5e',
         fillOpacity: 0.8,
       });
+
       targetMarker.bindTooltip(
         `<div class="font-mono text-xs p-1"><strong>Query Coordinate</strong><br/>${targetCoords.lat.toFixed(4)}°N, ${targetCoords.lng.toFixed(4)}°E</div>`,
         { permanent: true, direction: 'bottom' }
@@ -227,6 +218,7 @@ export const IndiaMap: React.FC<IndiaMapProps> = ({
       // Midpoint distance label
       const midLat = (targetCoords.lat + nearestCity.city.lat) / 2;
       const midLng = (targetCoords.lng + nearestCity.city.lng) / 2;
+
       const distanceBadge = L.marker([midLat, midLng], {
         icon: L.divIcon({
           className: 'snap-distance-label',
@@ -251,7 +243,6 @@ export const IndiaMap: React.FC<IndiaMapProps> = ({
     radarAlerts.forEach((alert) => {
       const isSevere = alert.riskLevel === 'SEVERE';
       const color = isSevere ? '#f43f5e' : '#f59e0b';
-
       const circle = L.circle([alert.cityData.city.lat, alert.cityData.city.lng], {
         radius: alert.radarRadiusKm * 1000,
         color: color,
@@ -270,7 +261,6 @@ export const IndiaMap: React.FC<IndiaMapProps> = ({
         </div>`,
         { sticky: true }
       );
-
       group.addLayer(circle);
     });
   }, [radarAlerts, showRadarZones]);
@@ -310,7 +300,6 @@ export const IndiaMap: React.FC<IndiaMapProps> = ({
       </div>`,
       { permanent: false, direction: 'top' }
     );
-
     group.addLayer(userMarker);
 
     // If user is inside any active radar zone, draw red warning vector to epicenter
@@ -551,7 +540,7 @@ export const IndiaMap: React.FC<IndiaMapProps> = ({
           )}
           {activeModelTab === 'weather' && (
             <div className="flex items-center gap-3 text-[10px] text-slate-400">
-              <span>🔵 Rain (&gt;2mm)</span>
+              <span>🌧️ Rain (&gt;2mm)</span>
               <span>⚡ Thunderstorm</span>
               <span>☀️ Clear</span>
               <span>🌫️ Smog</span>
@@ -598,7 +587,6 @@ function createCityMarkerHtml(
     if (isSevere) color = '#f43f5e'; // Red
     else if (isWarning) color = '#fbbf24'; // Orange
     else if (isAdvisory) color = '#facc15'; // Yellow
-
     return `
       <div style="position: relative; width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; cursor: pointer;">
         ${pulseRing}
@@ -613,7 +601,6 @@ function createCityMarkerHtml(
     const isHot = weather.tempC > 38;
     const isCold = weather.tempC < 15;
     const isRaining = weather.precipitationMm > 2;
-
     const bgBadge = isRaining ? '#0284c7' : isHot ? '#b91c1c' : isCold ? '#4338ca' : '#047857';
 
     return `
@@ -628,11 +615,10 @@ function createCityMarkerHtml(
   if (activeModel === 'agro') {
     const isHigh = agro.suitabilityScore >= 75;
     const color = isHigh ? '#10b981' : agro.suitabilityScore >= 60 ? '#06b6d4' : '#f59e0b';
-
     return `
       <div style="position: relative; width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; cursor: pointer;">
         <div style="width: 22px; height: 22px; background: #091e13; border: 2px solid ${color}; border-radius: 6px; display: flex; align-items: center; justify-content: center; color: ${color}; font-size: 9px; font-weight: 800; font-family: 'JetBrains Mono', monospace; ${selectedBorder}">
-          🌾
+          🌱
         </div>
       </div>
     `;

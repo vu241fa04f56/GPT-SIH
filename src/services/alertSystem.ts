@@ -36,8 +36,6 @@ export interface AlertNotificationSettings {
 export function calculateRadarRadiusKm(disaster: DisasterRisk): number {
   const isSevere = disaster.riskLevel === 'SEVERE';
   const isWarning = disaster.riskLevel === 'WARNING';
-  const isAdvisory = disaster.riskLevel === 'ADVISORY';
-
   const hazard = disaster.primaryHazard.toLowerCase();
 
   // Tropical Cyclone or Heatwave impacts wider radius
@@ -53,7 +51,6 @@ export function calculateRadarRadiusKm(disaster: DisasterRisk): number {
   if (hazard.includes('landslide') || hazard.includes('lightning')) {
     return isSevere ? 40 : isWarning ? 25 : 15;
   }
-
   return isSevere ? 60 : isWarning ? 40 : 20;
 }
 
@@ -108,7 +105,6 @@ export function evaluateUserHazardRadar(
   let highest: RadarAlert | null = null;
   const severeAlert = alerts.find((a) => a.riskLevel === 'SEVERE' && a.isUserInsideRadar) || alerts.find((a) => a.riskLevel === 'SEVERE');
   const warningAlert = alerts.find((a) => a.riskLevel === 'WARNING' && a.isUserInsideRadar) || alerts.find((a) => a.riskLevel === 'WARNING');
-
   highest = severeAlert || warningAlert || alerts[0] || null;
 
   return {
@@ -124,13 +120,11 @@ let audioCtx: AudioContext | null = null;
 
 export function playEmergencyAlertSound() {
   try {
-    const AudioContextClass = window.AudioContext || (window as any).webkitAudioContext;
+    const AudioContextClass = window.AudioContext || (window as unknown as { webkitAudioContext: typeof AudioContext }).webkitAudioContext;
     if (!AudioContextClass) return;
-
     if (!audioCtx) {
       audioCtx = new AudioContextClass();
     }
-
     if (audioCtx.state === 'suspended') {
       audioCtx.resume();
     }
@@ -144,7 +138,6 @@ export function playEmergencyAlertSound() {
 
     osc1.type = 'sine';
     osc1.frequency.setValueAtTime(853, now); // 853Hz standard Emergency Alert frequency
-
     osc2.type = 'sine';
     osc2.frequency.setValueAtTime(960, now); // 960Hz standard Emergency Alert frequency
 
@@ -153,7 +146,6 @@ export function playEmergencyAlertSound() {
     gainNode.gain.linearRampToValueAtTime(0.25, now + 0.1);
     gainNode.gain.setValueAtTime(0.25, now + 0.3);
     gainNode.gain.linearRampToValueAtTime(0.01, now + 0.4);
-
     gainNode.gain.setValueAtTime(0.01, now + 0.5);
     gainNode.gain.linearRampToValueAtTime(0.25, now + 0.6);
     gainNode.gain.setValueAtTime(0.25, now + 0.8);
@@ -192,13 +184,11 @@ export async function sendDeviceNotification(
   if (typeof window === 'undefined' || !('Notification' in window)) {
     return false;
   }
-
   try {
     let perm = Notification.permission;
     if (perm === 'default') {
       perm = await Notification.requestPermission();
     }
-
     if (perm === 'granted') {
       new Notification(title, {
         body,
@@ -211,6 +201,5 @@ export async function sendDeviceNotification(
   } catch (err) {
     console.warn('Web notification dispatch failed:', err);
   }
-
   return false;
 }

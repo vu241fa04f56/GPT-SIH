@@ -1,8 +1,9 @@
 {
-  "name": "WeatherGPT India - 130 Cities AI/ML Forecast & Early Warning",
+  "name": "WeatherGPT India Hub",
   "description": "Interactive AI/ML intelligence platform marking 1-Hour Weather, 3-Hour Disaster Risk Early Warning, and Agro Crop Intelligence for all 130 cities across India.",
   "requestFramePermissions": [
-    "geolocation"
+    "geolocation",
+    "microphone"
   ],
   "majorCapabilities": [
     "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"

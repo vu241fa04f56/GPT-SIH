@@ -1,14 +1,11 @@
 import React from 'react';
 import { RadarAlert } from '../services/alertSystem.ts';
 import {
-  AlertTriangle,
-  Radio,
   Volume2,
   VolumeX,
   X,
   ArrowRight,
   ShieldAlert,
-  Clock,
 } from 'lucide-react';
 
 interface RadarAlertBannerProps {

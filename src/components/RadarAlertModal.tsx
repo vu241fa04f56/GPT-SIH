@@ -11,19 +11,14 @@ import {
   ShieldAlert,
   Radio,
   Bell,
-  BellOff,
-  BellRing,
   Volume2,
   VolumeX,
   Crosshair,
-  MapPin,
   Clock,
   CheckCircle2,
-  AlertTriangle,
   X,
   Navigation,
   PhoneCall,
-  Sparkles,
   Smartphone,
   Compass,
 } from 'lucide-react';
@@ -53,6 +48,7 @@ export const RadarAlertModal: React.FC<RadarAlertModalProps> = ({
     }
     return 'unsupported';
   });
+
   const [isLocating, setIsLocating] = useState<boolean>(false);
   const [testSuccessMessage, setTestSuccessMessage] = useState<string | null>(null);
 
@@ -62,7 +58,6 @@ export const RadarAlertModal: React.FC<RadarAlertModalProps> = ({
       alert('Web Notification API is not supported in this browser.');
       return;
     }
-
     try {
       const perm = await Notification.requestPermission();
       setNotificationStatus(perm);
@@ -92,15 +87,14 @@ export const RadarAlertModal: React.FC<RadarAlertModalProps> = ({
     }
     // 3. Device Notification
     const dispatched = await sendDeviceNotification(
-      '⚠️ TEST HAZARD RADAR ALERT',
+      '🚨 TEST HAZARD RADAR ALERT',
       'WeatherGPT 3-Hour Disaster Risk Engine: Severe Cyclone / Flash Flood early warning simulated. Evacuate low-lying areas.',
       { requireInteraction: true, tag: 'test-emergency-alert' }
     );
-
     setTestSuccessMessage(
       dispatched
-        ? '✅ Device alert dispatched successfully! Check your phone/system notification center.'
-        : '⚠️ Alert tone & vibration triggered. (Web Notification blocked or needs permission).'
+        ? '✅ Device alert dispatched successfully! Check your notification center.'
+        : '🔊 Alert tone & vibration triggered. (Web Notification blocked or needs permission).'
     );
     setTimeout(() => setTestSuccessMessage(null), 5000);
   };
@@ -187,7 +181,7 @@ export const RadarAlertModal: React.FC<RadarAlertModalProps> = ({
             </div>
           </div>
           <button onClick={onClose} className="p-1 rounded text-slate-400 hover:text-white">
-            <X className="w-5 h-5" />
+            <X className="w-4 h-4" />
           </button>
         </div>
 
@@ -245,16 +239,16 @@ export const RadarAlertModal: React.FC<RadarAlertModalProps> = ({
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
               <button
                 onClick={handleTestDeviceAlert}
-                className="py-2.5 px-3 rounded-xl bg-gradient-to-r from-rose-600 to-amber-600 hover:from-rose-500 hover:to-amber-500 text-slate-950 font-extrabold flex items-center justify-center gap-2 transition-all shadow-lg text-xs"
+                className="py-2.5 px-3 rounded-xl bg-gradient-to-r from-rose-600 to-amber-600 hover:from-rose-500 hover:to-amber-500 text-slate-950 font-extrabold flex items-center justify-center gap-2 transition-all shadow-lg text-xs cursor-pointer"
               >
-                <BellRing className="w-4 h-4" />
+                <Bell className="w-4 h-4" />
                 <span>Raise Notification Alert on Device</span>
               </button>
 
               {notificationStatus !== 'granted' ? (
                 <button
                   onClick={handleRequestNotificationPermission}
-                  className="py-2.5 px-3 rounded-xl bg-cyan-950 hover:bg-cyan-900 border border-cyan-700 text-cyan-300 font-bold flex items-center justify-center gap-2 transition-colors text-xs"
+                  className="py-2.5 px-3 rounded-xl bg-cyan-950 hover:bg-cyan-900 border border-cyan-700 text-cyan-300 font-bold flex items-center justify-center gap-2 transition-colors text-xs cursor-pointer"
                 >
                   <Bell className="w-4 h-4 text-cyan-400" />
                   <span>Grant Web Notification Permission</span>
@@ -286,7 +280,7 @@ export const RadarAlertModal: React.FC<RadarAlertModalProps> = ({
                   className="rounded accent-rose-500"
                 />
                 <span className="flex items-center gap-1.5 text-slate-300">
-                  <Volume2 className="w-3.5 h-3.5 text-rose-400" />
+                  {settings.soundEnabled ? <Volume2 className="w-3.5 h-3.5 text-rose-400" /> : <VolumeX className="w-3.5 h-3.5 text-slate-500" />}
                   <span>Emergency Siren Audio</span>
                 </span>
               </label>
@@ -334,7 +328,7 @@ export const RadarAlertModal: React.FC<RadarAlertModalProps> = ({
               <button
                 onClick={handleAcquireRealGPS}
                 disabled={isLocating}
-                className="px-2.5 py-1 rounded-lg bg-slate-800 hover:bg-slate-700 text-cyan-300 flex items-center gap-1 text-[11px] transition-colors"
+                className="px-2.5 py-1 rounded-lg bg-slate-800 hover:bg-slate-700 text-cyan-300 flex items-center gap-1 text-[11px] transition-colors cursor-pointer"
               >
                 <Navigation className={`w-3 h-3 ${isLocating ? 'animate-spin' : ''}`} />
                 <span>Acquire Device GPS</span>
@@ -377,7 +371,7 @@ export const RadarAlertModal: React.FC<RadarAlertModalProps> = ({
                         timestamp: new Date().toISOString(),
                       });
                     }}
-                    className="p-2 text-left rounded-lg bg-slate-950/80 hover:bg-slate-800 border border-slate-850 hover:border-cyan-800 text-[11px] text-slate-300 hover:text-white transition-colors"
+                    className="p-2 text-left rounded-lg bg-slate-950/80 hover:bg-slate-800 border border-slate-850 hover:border-cyan-800 text-[11px] text-slate-300 hover:text-white transition-colors cursor-pointer"
                   >
                     <div className="font-semibold">{p.label}</div>
                     <span className="text-[10px] text-slate-500 font-mono">
@@ -398,7 +392,6 @@ export const RadarAlertModal: React.FC<RadarAlertModalProps> = ({
               {alerts.map((a) => {
                 const isInside = a.isUserInsideRadar;
                 const isSevere = a.riskLevel === 'SEVERE';
-
                 return (
                   <div
                     key={a.id}
@@ -435,7 +428,6 @@ export const RadarAlertModal: React.FC<RadarAlertModalProps> = ({
                           {a.hazardType}
                         </div>
                       </div>
-
                       <div className="text-right">
                         <div className="text-sm font-bold text-white">
                           {a.distanceFromUserKm.toFixed(1)} <span className="text-xs text-slate-400">km away</span>
@@ -469,7 +461,7 @@ export const RadarAlertModal: React.FC<RadarAlertModalProps> = ({
                           onFlyToAlert(a);
                           onClose();
                         }}
-                        className="px-2 py-1 rounded bg-slate-800 hover:bg-slate-700 text-cyan-300 font-semibold flex items-center gap-1 transition-colors shrink-0 ml-2"
+                        className="px-2 py-1 rounded bg-slate-800 hover:bg-slate-700 text-cyan-300 font-semibold flex items-center gap-1 transition-colors shrink-0 ml-2 cursor-pointer"
                       >
                         <Compass className="w-3 h-3" />
                         <span>Show on Map</span>

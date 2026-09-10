@@ -17,7 +17,6 @@ import {
 } from './data/citiesData.ts';
 import {
   AlertNotificationSettings,
-  RadarAlert,
   UserLocation,
   evaluateUserHazardRadar,
   playEmergencyAlertSound,
@@ -92,7 +91,7 @@ export default function App() {
   // Evaluate user geofence against all 130 city 3-hour disaster predictions
   const radarEvaluation = useMemo(() => {
     return evaluateUserHazardRadar(userLocation.lat, userLocation.lng, citiesData);
-  }, [userLocation, citiesData]);
+  }, [userLocation.lat, userLocation.lng, citiesData]);
 
   // Handle Automatic Device Notification Trigger when user enters hazard radar
   useEffect(() => {
@@ -112,7 +111,7 @@ export default function App() {
 
     if (meetsThreshold) {
       lastDispatchedAlertRef.current = alertKey;
-      setIsBannerDismissed(false);
+      setIsBannerDismissed((prev) => (prev ? false : prev));
 
       // 1. Device Push Notification
       if (alertSettings.webNotificationsEnabled) {
@@ -263,7 +262,7 @@ export default function App() {
           />
         )}
 
-        {/* VIEW 2: 3D Globe Web Dashboard (5173) */}
+        {/* VIEW 2: 3D Globe Web Dashboard */}
         {activeViewStyle === 'globe' && (
           <Globe3D
             cities={filteredCities}
@@ -272,7 +271,7 @@ export default function App() {
           />
         )}
 
-        {/* VIEW 3: Mobile App View Simulator (8082) */}
+        {/* VIEW 3: Mobile App View Simulator */}
         {activeViewStyle === 'mobile-app' && selectedCity && (
           <MobileAppView
             cities={citiesData}

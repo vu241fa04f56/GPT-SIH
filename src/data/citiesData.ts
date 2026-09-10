@@ -2,7 +2,7 @@ import { CityInfo, CityModelOutput, SupportedCrop, NearestStationResult } from '
 
 export const CITIES_130_MASTER: CityInfo[] = [
   // 1. Western Region (Maharashtra, Gujarat, Goa)
-  { id: 1, name: 'Mumbai', state: 'Maharashtra', lat: 19.08, lng: 72.88, zone: '🌊 Coastal Metropolitan', region: 'Western Region' },
+  { id: 1, name: 'Mumbai', state: 'Maharashtra', lat: 19.08, lng: 72.88, zone: 'Coastal Metropolitan', region: 'Western Region' },
   { id: 2, name: 'Pune', state: 'Maharashtra', lat: 18.52, lng: 73.86, zone: 'Plateau Urban', region: 'Western Region' },
   { id: 3, name: 'Nagpur', state: 'Maharashtra', lat: 21.15, lng: 79.09, zone: 'Central Inland', region: 'Western Region' },
   { id: 4, name: 'Nashik', state: 'Maharashtra', lat: 20.00, lng: 73.79, zone: 'Agricultural Hub', region: 'Western Region' },
@@ -22,28 +22,28 @@ export const CITIES_130_MASTER: CityInfo[] = [
   // Southern Region - Karnataka
   { id: 15, name: 'Bengaluru', state: 'Karnataka', lat: 12.97, lng: 77.59, zone: 'Southern Tech Hub', region: 'Southern Region' },
   { id: 16, name: 'Mysuru', state: 'Karnataka', lat: 12.30, lng: 76.64, zone: 'Southern Plateau', region: 'Southern Region' },
-  { id: 17, name: 'Mangaluru', state: 'Karnataka', lat: 12.91, lng: 74.86, zone: '🌊 Arabian Sea Coast', region: 'Southern Region' },
+  { id: 17, name: 'Mangaluru', state: 'Karnataka', lat: 12.91, lng: 74.86, zone: 'Arabian Sea Coast', region: 'Southern Region' },
   { id: 18, name: 'Hubli', state: 'Karnataka', lat: 15.36, lng: 75.12, zone: 'Northern Karnataka', region: 'Southern Region' },
   { id: 19, name: 'Belagavi', state: 'Karnataka', lat: 15.85, lng: 74.50, zone: 'Western Ghats Foothills', region: 'Southern Region' },
   { id: 20, name: 'Bellary', state: 'Karnataka', lat: 15.14, lng: 76.92, zone: 'Eastern Dry Zone', region: 'Southern Region' },
 
   // Southern Region - Tamil Nadu & Puducherry
-  { id: 21, name: 'Chennai', state: 'Tamil Nadu', lat: 13.08, lng: 80.27, zone: '🌊 Bay of Bengal Coast', region: 'Southern Region' },
+  { id: 21, name: 'Chennai', state: 'Tamil Nadu', lat: 13.08, lng: 80.27, zone: 'Bay of Bengal Coast', region: 'Southern Region' },
   { id: 22, name: 'Coimbatore', state: 'Tamil Nadu', lat: 11.02, lng: 76.96, zone: 'Rain Shadow Basin', region: 'Southern Region' },
   { id: 23, name: 'Madurai', state: 'Tamil Nadu', lat: 9.93, lng: 78.12, zone: 'Southern Plains', region: 'Southern Region' },
   { id: 24, name: 'Tiruchirappalli', state: 'Tamil Nadu', lat: 10.79, lng: 78.70, zone: 'Cauvery Delta', region: 'Southern Region' },
   { id: 25, name: 'Salem', state: 'Tamil Nadu', lat: 11.66, lng: 78.15, zone: 'Inland Basin', region: 'Southern Region' },
-  { id: 26, name: 'Tirunelveli', state: 'Tamil Nadu', lat: 8.71, lng: 77.76, zone: '🌊 Coastal South', region: 'Southern Region' },
+  { id: 26, name: 'Tirunelveli', state: 'Tamil Nadu', lat: 8.71, lng: 77.76, zone: 'Coastal South', region: 'Southern Region' },
   { id: 27, name: 'Erode', state: 'Tamil Nadu', lat: 11.34, lng: 77.72, zone: 'Agricultural Basin', region: 'Southern Region' },
   { id: 28, name: 'Vellore', state: 'Tamil Nadu', lat: 12.92, lng: 79.13, zone: 'Northern Plains', region: 'Southern Region' },
-  { id: 29, name: 'Thoothukudi', state: 'Tamil Nadu', lat: 8.76, lng: 78.13, zone: '🌊 Gulf of Mannar Coast', region: 'Southern Region' },
-  { id: 30, name: 'Puducherry', state: 'Puducherry UT', lat: 11.94, lng: 79.81, zone: '🌊 Coromandel Coast', region: 'Southern Region' },
+  { id: 29, name: 'Thoothukudi', state: 'Tamil Nadu', lat: 8.76, lng: 78.13, zone: 'Gulf of Mannar Coast', region: 'Southern Region' },
+  { id: 30, name: 'Puducherry', state: 'Puducherry UT', lat: 11.94, lng: 79.81, zone: 'Coromandel Coast', region: 'Southern Region' },
 
   // Southern Region - Andhra Pradesh
-  { id: 31, name: 'Visakhapatnam', state: 'Andhra Pradesh', lat: 17.69, lng: 83.22, zone: '🌊 Eastern Seaboard Port', region: 'Southern Region' },
+  { id: 31, name: 'Visakhapatnam', state: 'Andhra Pradesh', lat: 17.69, lng: 83.22, zone: 'Eastern Seaboard Port', region: 'Southern Region' },
   { id: 32, name: 'Vijayawada', state: 'Andhra Pradesh', lat: 16.51, lng: 80.65, zone: 'Krishna Delta', region: 'Southern Region' },
   { id: 33, name: 'Guntur', state: 'Andhra Pradesh', lat: 16.31, lng: 80.44, zone: 'Coastal Plain', region: 'Southern Region' },
-  { id: 34, name: 'Nellore', state: 'Andhra Pradesh', lat: 14.44, lng: 79.99, zone: '🌊 Penna Coastal Plain', region: 'Southern Region' },
+  { id: 34, name: 'Nellore', state: 'Andhra Pradesh', lat: 14.44, lng: 79.99, zone: 'Penna Coastal Plain', region: 'Southern Region' },
   { id: 35, name: 'Tirupati', state: 'Andhra Pradesh', lat: 13.63, lng: 79.42, zone: 'Eastern Ghats Foothills', region: 'Southern Region' },
   { id: 36, name: 'Kurnool', state: 'Andhra Pradesh', lat: 15.83, lng: 78.04, zone: 'Rayalaseema Basin', region: 'Southern Region' },
   { id: 37, name: 'Amaravati', state: 'Andhra Pradesh', lat: 16.52, lng: 80.52, zone: 'Capital Basin', region: 'Southern Region' },
@@ -55,21 +55,21 @@ export const CITIES_130_MASTER: CityInfo[] = [
   { id: 41, name: 'Karimnagar', state: 'Telangana', lat: 18.44, lng: 79.13, zone: 'Northern Plateau', region: 'Southern Region' },
 
   // Southern Region - Kerala
-  { id: 42, name: 'Thiruvananthapuram', state: 'Kerala', lat: 8.52, lng: 76.94, zone: '🌊 Coastal Capital', region: 'Southern Region' },
-  { id: 43, name: 'Kochi', state: 'Kerala', lat: 9.93, lng: 76.27, zone: '🌊 Coastal Port', region: 'Southern Region' },
-  { id: 44, name: 'Kozhikode', state: 'Kerala', lat: 11.26, lng: 75.78, zone: '🌊 Malabar Coast', region: 'Southern Region' },
+  { id: 42, name: 'Thiruvananthapuram', state: 'Kerala', lat: 8.52, lng: 76.94, zone: 'Coastal Capital', region: 'Southern Region' },
+  { id: 43, name: 'Kochi', state: 'Kerala', lat: 9.93, lng: 76.27, zone: 'Coastal Port', region: 'Southern Region' },
+  { id: 44, name: 'Kozhikode', state: 'Kerala', lat: 11.26, lng: 75.78, zone: 'Malabar Coast', region: 'Southern Region' },
   { id: 45, name: 'Thrissur', state: 'Kerala', lat: 10.53, lng: 76.21, zone: 'Central Lowlands', region: 'Southern Region' },
-  { id: 46, name: 'Kollam', state: 'Kerala', lat: 8.89, lng: 76.61, zone: '🌊 Ashtamudi Coast', region: 'Southern Region' },
-  { id: 47, name: 'Kannur', state: 'Kerala', lat: 11.87, lng: 75.37, zone: '🌊 North Malabar Coast', region: 'Southern Region' },
+  { id: 46, name: 'Kollam', state: 'Kerala', lat: 8.89, lng: 76.61, zone: 'Ashtamudi Coast', region: 'Southern Region' },
+  { id: 47, name: 'Kannur', state: 'Kerala', lat: 11.87, lng: 75.37, zone: 'North Malabar Coast', region: 'Southern Region' },
   { id: 48, name: 'Malappuram', state: 'Kerala', lat: 11.05, lng: 76.07, zone: 'Mid-Highlands', region: 'Southern Region' },
 
   // Western Region - Gujarat
   { id: 49, name: 'Ahmedabad', state: 'Gujarat', lat: 23.02, lng: 72.57, zone: 'Sabarmati Basin Metro', region: 'Western Region' },
-  { id: 50, name: 'Surat', state: 'Gujarat', lat: 21.17, lng: 72.83, zone: '🌊 Gulf of Khambhat Coast', region: 'Western Region' },
+  { id: 50, name: 'Surat', state: 'Gujarat', lat: 21.17, lng: 72.83, zone: 'Gulf of Khambhat Coast', region: 'Western Region' },
   { id: 51, name: 'Vadodara', state: 'Gujarat', lat: 22.31, lng: 73.18, zone: 'Central Gujarat Plains', region: 'Western Region' },
   { id: 52, name: 'Rajkot', state: 'Gujarat', lat: 22.30, lng: 70.80, zone: 'Saurashtra Plateau', region: 'Western Region' },
-  { id: 53, name: 'Bhavnagar', state: 'Gujarat', lat: 21.76, lng: 72.15, zone: '🌊 Coastal Saurashtra', region: 'Western Region' },
-  { id: 54, name: 'Jamnagar', state: 'Gujarat', lat: 22.47, lng: 70.06, zone: '🌊 Gulf of Kutch Coast', region: 'Western Region' },
+  { id: 53, name: 'Bhavnagar', state: 'Gujarat', lat: 21.76, lng: 72.15, zone: 'Coastal Saurashtra', region: 'Western Region' },
+  { id: 54, name: 'Jamnagar', state: 'Gujarat', lat: 22.47, lng: 70.06, zone: 'Gulf of Kutch Coast', region: 'Western Region' },
   { id: 55, name: 'Junagadh', state: 'Gujarat', lat: 21.52, lng: 70.46, zone: 'Gir Foothills', region: 'Western Region' },
   { id: 56, name: 'Gandhinagar', state: 'Gujarat', lat: 23.22, lng: 72.64, zone: 'State Capital', region: 'Western Region' },
   { id: 57, name: 'Anand', state: 'Gujarat', lat: 22.56, lng: 72.93, zone: 'Dairy / Agro Belt', region: 'Western Region' },
@@ -115,9 +115,9 @@ export const CITIES_130_MASTER: CityInfo[] = [
   { id: 87, name: 'Ambala', state: 'Haryana', lat: 30.38, lng: 76.78, zone: 'North-Eastern Plain', region: 'Northern Region' },
 
   // Northern Region - Himachal Pradesh
-  { id: 88, name: 'Shimla', state: 'Himachal Pradesh', lat: 31.10, lng: 77.17, zone: '🏔️ High Hill Capital', region: 'Northern Region' },
-  { id: 89, name: 'Dharamshala', state: 'Himachal Pradesh', lat: 32.22, lng: 76.32, zone: '🏔️ Kangra Valley Hill', region: 'Northern Region' },
-  { id: 90, name: 'Manali', state: 'Himachal Pradesh', lat: 32.24, lng: 77.19, zone: '🏔️ High Mountain Alpine', region: 'Northern Region' },
+  { id: 88, name: 'Shimla', state: 'Himachal Pradesh', lat: 31.10, lng: 77.17, zone: 'High Hill Capital', region: 'Northern Region' },
+  { id: 89, name: 'Dharamshala', state: 'Himachal Pradesh', lat: 32.22, lng: 76.32, zone: 'Kangra Valley Hill', region: 'Northern Region' },
+  { id: 90, name: 'Manali', state: 'Himachal Pradesh', lat: 32.24, lng: 77.19, zone: 'High Mountain Alpine', region: 'Northern Region' },
 
   // Northern Region - Uttarakhand
   { id: 91, name: 'Dehradun', state: 'Uttarakhand', lat: 30.32, lng: 78.03, zone: 'Doon Valley Capital', region: 'Northern Region' },
@@ -125,9 +125,9 @@ export const CITIES_130_MASTER: CityInfo[] = [
   { id: 93, name: 'Roorkee', state: 'Uttarakhand', lat: 29.85, lng: 77.89, zone: 'Upper Gangetic Plain', region: 'Northern Region' },
 
   // Northern Region - Jammu & Kashmir and Ladakh
-  { id: 94, name: 'Srinagar', state: 'Jammu & Kashmir', lat: 34.08, lng: 74.80, zone: '🏔️ Kashmir Valley', region: 'Northern Region' },
+  { id: 94, name: 'Srinagar', state: 'Jammu & Kashmir', lat: 34.08, lng: 74.80, zone: 'Kashmir Valley', region: 'Northern Region' },
   { id: 95, name: 'Jammu', state: 'Jammu & Kashmir', lat: 32.73, lng: 74.86, zone: 'Tawi Foothills', region: 'Northern Region' },
-  { id: 96, name: 'Leh', state: 'Ladakh', lat: 34.15, lng: 77.58, zone: '🏔️ Cold Desert High Altitude', region: 'Northern Region' },
+  { id: 96, name: 'Leh', state: 'Ladakh', lat: 34.15, lng: 77.58, zone: 'Cold Desert High Altitude', region: 'Northern Region' },
 
   // Central & Eastern Region - Bihar
   { id: 97, name: 'Patna', state: 'Bihar', lat: 25.59, lng: 85.14, zone: 'Ganga Valley Capital', region: 'Central & Eastern Region' },
@@ -143,7 +143,7 @@ export const CITIES_130_MASTER: CityInfo[] = [
   { id: 105, name: 'Bokaro', state: 'Jharkhand', lat: 23.67, lng: 85.96, zone: 'Plateau Industrial', region: 'Central & Eastern Region' },
 
   // Central & Eastern Region - West Bengal
-  { id: 106, name: 'Kolkata', state: 'West Bengal', lat: 22.57, lng: 88.36, zone: '🌊 Hooghly Delta Metro', region: 'Central & Eastern Region' },
+  { id: 106, name: 'Kolkata', state: 'West Bengal', lat: 22.57, lng: 88.36, zone: 'Hooghly Delta Metro', region: 'Central & Eastern Region' },
   { id: 107, name: 'Howrah', state: 'West Bengal', lat: 22.60, lng: 88.26, zone: 'Hooghly Basin', region: 'Central & Eastern Region' },
   { id: 108, name: 'Siliguri', state: 'West Bengal', lat: 26.73, lng: 88.40, zone: 'Terai Corridor', region: 'Central & Eastern Region' },
   { id: 109, name: 'Asansol', state: 'West Bengal', lat: 23.68, lng: 86.98, zone: 'Western Plateau Fringe', region: 'Central & Eastern Region' },
@@ -154,7 +154,7 @@ export const CITIES_130_MASTER: CityInfo[] = [
   { id: 112, name: 'Cuttack', state: 'Odisha', lat: 20.46, lng: 85.88, zone: 'Mahanadi Delta', region: 'Central & Eastern Region' },
   { id: 113, name: 'Rourkela', state: 'Odisha', lat: 22.26, lng: 84.85, zone: 'Chota Nagpur Fringe', region: 'Central & Eastern Region' },
   { id: 114, name: 'Sambalpur', state: 'Odisha', lat: 21.47, lng: 83.98, zone: 'Hirakud Basin', region: 'Central & Eastern Region' },
-  { id: 115, name: 'Puri', state: 'Odisha', lat: 19.81, lng: 85.83, zone: '🌊 Bay of Bengal Coast', region: 'Central & Eastern Region' },
+  { id: 115, name: 'Puri', state: 'Odisha', lat: 19.81, lng: 85.83, zone: 'Bay of Bengal Coast', region: 'Central & Eastern Region' },
 
   // Central & Eastern Region - Chhattisgarh
   { id: 116, name: 'Raipur', state: 'Chhattisgarh', lat: 21.25, lng: 81.63, zone: 'Mahanadi Basin Capital', region: 'Central & Eastern Region' },
@@ -165,19 +165,19 @@ export const CITIES_130_MASTER: CityInfo[] = [
   { id: 119, name: 'Guwahati', state: 'Assam', lat: 26.14, lng: 91.74, zone: 'Brahmaputra Valley', region: 'North-Eastern States & Island Territories' },
   { id: 120, name: 'Dibrugarh', state: 'Assam', lat: 27.47, lng: 94.91, zone: 'Upper Assam Valley', region: 'North-Eastern States & Island Territories' },
   { id: 121, name: 'Silchar', state: 'Assam', lat: 24.83, lng: 92.78, zone: 'Barak Valley', region: 'North-Eastern States & Island Territories' },
-  { id: 122, name: 'Shillong', state: 'Meghalaya', lat: 25.58, lng: 91.89, zone: '🏔️ Khasi Hills Capital', region: 'North-Eastern States & Island Territories' },
+  { id: 122, name: 'Shillong', state: 'Meghalaya', lat: 25.58, lng: 91.89, zone: 'Khasi Hills Capital', region: 'North-Eastern States & Island Territories' },
   { id: 123, name: 'Agartala', state: 'Tripura', lat: 23.83, lng: 91.29, zone: 'Howrah River Plain', region: 'North-Eastern States & Island Territories' },
   { id: 124, name: 'Imphal', state: 'Manipur', lat: 24.82, lng: 93.94, zone: 'Manipur Valley Capital', region: 'North-Eastern States & Island Territories' },
-  { id: 125, name: 'Aizawl', state: 'Mizoram', lat: 23.73, lng: 92.72, zone: '🏔️ Mizo Hills Ridge', region: 'North-Eastern States & Island Territories' },
-  { id: 126, name: 'Kohima', state: 'Nagaland', lat: 25.67, lng: 94.11, zone: '🏔️ Naga Hills Capital', region: 'North-Eastern States & Island Territories' },
-  { id: 127, name: 'Itanagar', state: 'Arunachal Pradesh', lat: 27.08, lng: 93.61, zone: '🏔️ Eastern Himalayan Hill', region: 'North-Eastern States & Island Territories' },
-  { id: 128, name: 'Gangtok', state: 'Sikkim', lat: 27.34, lng: 88.61, zone: '🏔️ Shivalik Range Capital', region: 'North-Eastern States & Island Territories' },
+  { id: 125, name: 'Aizawl', state: 'Mizoram', lat: 23.73, lng: 92.72, zone: 'Mizo Hills Ridge', region: 'North-Eastern States & Island Territories' },
+  { id: 126, name: 'Kohima', state: 'Nagaland', lat: 25.67, lng: 94.11, zone: 'Naga Hills Capital', region: 'North-Eastern States & Island Territories' },
+  { id: 127, name: 'Itanagar', state: 'Arunachal Pradesh', lat: 27.08, lng: 93.61, zone: 'Eastern Himalayan Hill', region: 'North-Eastern States & Island Territories' },
+  { id: 128, name: 'Gangtok', state: 'Sikkim', lat: 27.34, lng: 88.61, zone: 'Shivalik Range Capital', region: 'North-Eastern States & Island Territories' },
 
   // Western Region - Goa
-  { id: 129, name: 'Panaji', state: 'Goa', lat: 15.49, lng: 73.83, zone: '🌊 Mandovi Estuary Coast', region: 'Western Region' },
+  { id: 129, name: 'Panaji', state: 'Goa', lat: 15.49, lng: 73.83, zone: 'Mandovi Estuary Coast', region: 'Western Region' },
 
   // North-Eastern & Island Territories - Andaman & Nicobar
-  { id: 130, name: 'Port Blair', state: 'Andaman & Nicobar', lat: 11.62, lng: 92.73, zone: '🌊 Andaman Sea Island', region: 'North-Eastern States & Island Territories' },
+  { id: 130, name: 'Port Blair', state: 'Andaman & Nicobar', lat: 11.62, lng: 92.73, zone: 'Andaman Sea Island', region: 'North-Eastern States & Island Territories' },
 ];
 
 // Seeded pseudo-random generator for deterministic yet realistic model predictions per city
@@ -199,8 +199,8 @@ export function generateModelOutputsForCity(
   const r4 = pseudoRandom(seed + 4);
   const r5 = pseudoRandom(seed + 5);
 
-  const isCoastal = city.zone.includes('🌊') || city.zone.includes('Coast') || city.zone.includes('Island');
-  const isMountain = city.zone.includes('🏔️') || city.zone.includes('Hill') || city.zone.includes('Alpine');
+  const isCoastal = city.zone.includes('Coast') || city.zone.includes('Island') || city.zone.includes('Port');
+  const isMountain = city.zone.includes('Hill') || city.zone.includes('Alpine') || city.zone.includes('Valley') || city.zone.includes('Ridge');
   const isArid = city.zone.includes('Arid') || city.zone.includes('Desert') || city.state === 'Rajasthan';
   const isGangetic = city.zone.includes('Ganga') || city.zone.includes('Plain') || city.zone.includes('Doab');
 
@@ -286,7 +286,6 @@ export function generateModelOutputsForCity(
   });
 
   // 2. 3-Hour Disaster Risk Early Warning Model
-  // Let certain cities trigger warning/severe states naturally
   let riskScore = Math.round(15 + r4 * 45);
   let riskLevel: 'LOW' | 'ADVISORY' | 'WARNING' | 'SEVERE' = 'LOW';
   let primaryHazard = 'Nominal Climatological State';
@@ -300,41 +299,41 @@ export function generateModelOutputsForCity(
   if (city.name === 'Mumbai' || city.name === 'Guwahati' || city.name === 'Patna' || city.name === 'Kolkata') {
     riskScore = Math.round(72 + r1 * 22);
     riskLevel = riskScore > 85 ? 'SEVERE' : 'WARNING';
-    primaryHazard = '🌊 Urban Flash Flood & Drainage Choke Warning';
+    primaryHazard = 'Urban Flash Flood & Drainage Choke Warning';
     secondaryHazard = 'Storm Surge Tidal Inundation';
     activeNDMAProtocol = 'NDMA Protocol ORANGE/RED: Activate Emergency Drainage Stations';
     safetyChecklist.push('Avoid low-lying subways & underpasses', 'Keep 48-hr emergency drinking water', 'High-voltage transformer safety perimeter enforced');
   } else if (city.name === 'Puri' || city.name === 'Visakhapatnam' || city.name === 'Chennai' || city.name === 'Thoothukudi') {
     riskScore = Math.round(68 + r2 * 26);
     riskLevel = riskScore > 84 ? 'SEVERE' : 'WARNING';
-    primaryHazard = '🌀 Tropical Cyclonic Depression & Gale Advisory';
+    primaryHazard = 'Tropical Cyclonic Depression & Gale Advisory';
     secondaryHazard = 'Coastal High-Tide Surge';
     activeNDMAProtocol = 'NDMA Protocol ORANGE: Complete Suspension of Coastal Fishing & Maritime Excursions';
     safetyChecklist.push('Fishermen strictly advised not to venture into deep sea', 'Anchor light marine crafts in harbor', 'Secure tin roofs and rooftop loose objects');
   } else if (city.name === 'Shimla' || city.name === 'Manali' || city.name === 'Dharamshala' || city.name === 'Gangtok' || city.name === 'Aizawl') {
     riskScore = Math.round(65 + r3 * 28);
     riskLevel = riskScore > 82 ? 'SEVERE' : 'WARNING';
-    primaryHazard = '⛰️ Slope Landslide Hazard & Cloudburst Trigger';
+    primaryHazard = 'Slope Landslide Hazard & Cloudburst Trigger';
     secondaryHazard = 'National Highway Blockage';
     activeNDMAProtocol = 'NDMA Protocol YELLOW/ORANGE: Restrict Heavy Transport on Vulnerable Slopes';
     safetyChecklist.push('Avoid travel on NH landslide-prone stretches', 'Monitor natural slope cracks', 'Maintain battery communication backups');
   } else if (city.name === 'Bikaner' || city.name === 'Jodhpur' || city.name === 'Nagpur' || city.name === 'Solapur') {
     riskScore = Math.round(62 + r4 * 30);
     riskLevel = riskScore > 80 ? 'SEVERE' : 'WARNING';
-    primaryHazard = '🔥 Extreme Heatwave & Dehydration Red Alert';
+    primaryHazard = 'Extreme Heatwave & Dehydration Red Alert';
     secondaryHazard = 'Severe Thermal Sunstroke';
     activeNDMAProtocol = 'NDMA Protocol RED: Industrial Labor Afternoon Stand-down (12:00-15:30)';
     safetyChecklist.push('Carry ORS solution and stay in shaded cooling hubs', 'Never leave children/pets inside parked cars', 'Restrict direct outdoor exposure between 12-4 PM');
   } else if (city.name === 'Delhi' || city.name === 'Noida' || city.name === 'Ghaziabad' || city.name === 'Kanpur') {
     riskScore = Math.round(58 + r5 * 32);
     riskLevel = riskScore > 80 ? 'SEVERE' : riskScore > 65 ? 'WARNING' : 'ADVISORY';
-    primaryHazard = '🌫️ Severe PM2.5 Micro-Particulate Smog Spike';
+    primaryHazard = 'Severe PM2.5 Micro-Particulate Smog Spike';
     secondaryHazard = 'Critical Respiratory Distress';
     activeNDMAProtocol = 'GRAP Stage-IV Enforcement: Anti-Smog Gun Deployed';
     safetyChecklist.push('Wear N95/FFP2 masks outdoors', 'Children and asthmatic patients avoid morning jogs', 'Operate HEPA room air purifiers indoors');
   } else if (riskScore > 50) {
     riskLevel = 'ADVISORY';
-    primaryHazard = '⚡ Localized Convective Lightning & Gust Front';
+    primaryHazard = 'Localized Convective Lightning & Gust Front';
     safetyChecklist.push('Take shelter in enclosed brick buildings during lightning', 'Avoid standing under tall trees or electric poles');
   }
 
@@ -364,11 +363,11 @@ export function generateModelOutputsForCity(
 
   let irrigationAdvisory = 'Normal scheduled irrigation cycle recommended.';
   if (precipitationMm > 4 || precipProb > 60) {
-    irrigationAdvisory = '⛔ SUSPEND IRRIGATION: Substantial precipitation (>1h) will provide natural root-zone saturation.';
+    irrigationAdvisory = 'SUSPEND IRRIGATION: Substantial precipitation (>1h) will provide natural root-zone saturation.';
   } else if (soilStatus === 'Deficit') {
-    irrigationAdvisory = '💧 IMMEDIATE IRRIGATION REQUIRED: Critical moisture deficit. Run drip or micro-sprinkler for 45 mins at dusk.';
+    irrigationAdvisory = 'IMMEDIATE IRRIGATION REQUIRED: Critical moisture deficit. Run drip or micro-sprinkler for 45 mins at dusk.';
   } else if (soilStatus === 'Waterlogged') {
-    irrigationAdvisory = '⚠️ DRAINAGE PRIORITY: Dig contour trenches to prevent root-rot & collar fungus.';
+    irrigationAdvisory = 'DRAINAGE PRIORITY: Dig contour trenches to prevent root-rot & collar fungus.';
   }
 
   let pestRisk: 'Low' | 'Moderate' | 'High' | 'Critical' = 'Low';
@@ -388,7 +387,6 @@ export function generateModelOutputsForCity(
     : 'Active grain filling | Irrigation cutoff recommended 10 days before harvest';
 
   const gddAccumulated = Math.round(1450 + r4 * 600);
-
   const fertilizerTip = soilStatus === 'Waterlogged'
     ? 'Avoid urea broadcasting now to prevent leaching. Apply foliar zinc & potassium once drainage stabilizes.'
     : 'Apply split dose of Urea (45kg/ha) + DAP during morning soil absorption window.';
@@ -470,13 +468,13 @@ export function calculateHaversineDistanceKm(lat1: number, lon1: number, lat2: n
 
 // Calculate bearing angle from point 1 to point 2
 export function calculateBearingDeg(lat1: number, lon1: number, lat2: number, lon2: number): number {
-  const φ1 = (lat1 * Math.PI) / 180;
-  const φ2 = (lat2 * Math.PI) / 180;
-  const Δλ = ((lon2 - lon1) * Math.PI) / 180;
-  const y = Math.sin(Δλ) * Math.cos(φ2);
-  const x = Math.cos(φ1) * Math.sin(φ2) - Math.sin(φ1) * Math.cos(φ2) * Math.cos(Δλ);
-  const θ = Math.atan2(y, x);
-  return Math.round(((θ * 180) / Math.PI + 360) % 360);
+  const phi1 = (lat1 * Math.PI) / 180;
+  const phi2 = (lat2 * Math.PI) / 180;
+  const deltaLambda = ((lon2 - lon1) * Math.PI) / 180;
+  const y = Math.sin(deltaLambda) * Math.cos(phi2);
+  const x = Math.cos(phi1) * Math.sin(phi2) - Math.sin(phi1) * Math.cos(phi2) * Math.cos(deltaLambda);
+  const theta = Math.atan2(y, x);
+  return Math.round(((theta * 180) / Math.PI + 360) % 360);
 }
 
 // PostGIS spatial snap function: finds the closest monitored station to any India GPS point

@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { CityModelOutput } from '../types.ts';
-import { RotateCw, ZoomIn, ZoomOut, Play, Pause, Navigation, Info } from 'lucide-react';
+import { ZoomIn, ZoomOut, Play, Pause, Navigation } from 'lucide-react';
 
 interface Globe3DProps {
   cities: CityModelOutput[];
@@ -14,7 +14,7 @@ export const Globe3D: React.FC<Globe3DProps> = ({
   onSelectCity,
 }) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const [rotation, setRotation] = useState<{ x: number; y: number }>({
+  const rotationRef = useRef<{ x: number; y: number }>({
     x: 0.38, // Centered roughly at India's latitude ~22°
     y: -1.38, // Centered roughly at India's longitude ~78°
   });
@@ -25,6 +25,14 @@ export const Globe3D: React.FC<Globe3DProps> = ({
   const isDraggingRef = useRef(false);
   const lastMousePosRef = useRef({ x: 0, y: 0 });
   const projectedPointsRef = useRef<Array<{ x: number; y: number; city: CityModelOutput; visible: boolean }>>([]);
+  const hoveredCityRef = useRef<CityModelOutput | null>(null);
+  hoveredCityRef.current = hoveredCity;
+  const selectedCityRef = useRef<CityModelOutput | null>(selectedCity);
+  selectedCityRef.current = selectedCity;
+  const isRotatingRef = useRef<boolean>(isRotating);
+  isRotatingRef.current = isRotating;
+  const zoomScaleRef = useRef<number>(zoomScale);
+  zoomScaleRef.current = zoomScale;
 
   // Animation Loop for Canvas 3D Globe
   useEffect(() => {
@@ -37,18 +45,17 @@ export const Globe3D: React.FC<Globe3DProps> = ({
 
     const render = () => {
       // Auto-rotation if enabled
-      if (isRotating && !isDraggingRef.current) {
-        setRotation((prev) => ({
-          ...prev,
-          y: prev.y + 0.003,
-        }));
+      if (isRotatingRef.current && !isDraggingRef.current) {
+        rotationRef.current.y += 0.0025;
       }
 
       const width = canvas.width;
       const height = canvas.height;
       const cx = width / 2;
       const cy = height / 2;
-      const radius = (Math.min(width, height) * 0.38) * zoomScale;
+      const currentZoom = zoomScaleRef.current;
+      const radius = (Math.min(width, height) * 0.38) * currentZoom;
+      const rot = rotationRef.current;
 
       ctx.clearRect(0, 0, width, height);
 
@@ -57,7 +64,6 @@ export const Globe3D: React.FC<Globe3DProps> = ({
       glowGradient.addColorStop(0, 'rgba(6, 182, 212, 0.15)');
       glowGradient.addColorStop(0.5, 'rgba(16, 185, 129, 0.06)');
       glowGradient.addColorStop(1, 'rgba(0, 0, 0, 0)');
-
       ctx.fillStyle = glowGradient;
       ctx.beginPath();
       ctx.arc(cx, cy, radius * 1.35, 0, Math.PI * 2);
@@ -75,7 +81,6 @@ export const Globe3D: React.FC<Globe3DProps> = ({
       sphereGradient.addColorStop(0, '#131b2e');
       sphereGradient.addColorStop(0.7, '#0b1120');
       sphereGradient.addColorStop(1, '#050811');
-
       ctx.fillStyle = sphereGradient;
       ctx.beginPath();
       ctx.arc(cx, cy, radius, 0, Math.PI * 2);
@@ -98,7 +103,7 @@ export const Globe3D: React.FC<Globe3DProps> = ({
         for (let lng = -180; lng <= 180; lng += 10) {
           const theta = (lng * Math.PI) / 180;
           // Rotate around X and Y
-          const pt = project3D(phi, theta, rotation.x, rotation.y, radius, cx, cy);
+          const pt = project3D(phi, theta, rot.x, rot.y, radius, cx, cy);
           if (pt.z > 0) {
             if (first) {
               ctx.moveTo(pt.x, pt.y);
@@ -120,7 +125,7 @@ export const Globe3D: React.FC<Globe3DProps> = ({
         let first = true;
         for (let lat = -90; lat <= 90; lat += 5) {
           const phi = (lat * Math.PI) / 180;
-          const pt = project3D(phi, theta, rotation.x, rotation.y, radius, cx, cy);
+          const pt = project3D(phi, theta, rot.x, rot.y, radius, cx, cy);
           if (pt.z > 0) {
             if (first) {
               ctx.moveTo(pt.x, pt.y);
@@ -137,18 +142,20 @@ export const Globe3D: React.FC<Globe3DProps> = ({
 
       // 4. Project and Draw All 130 Cities
       const currentProjects: Array<{ x: number; y: number; city: CityModelOutput; visible: boolean }> = [];
+      const currentSelected = selectedCityRef.current;
+      const currentHovered = hoveredCityRef.current;
 
       cities.forEach((cityData) => {
         const latRad = (cityData.city.lat * Math.PI) / 180;
         const lngRad = (cityData.city.lng * Math.PI) / 180;
-        const pt = project3D(latRad, lngRad, rotation.x, rotation.y, radius, cx, cy);
-
+        const pt = project3D(latRad, lngRad, rot.x, rot.y, radius, cx, cy);
         const isVisible = pt.z > 0;
+
         currentProjects.push({ x: pt.x, y: pt.y, city: cityData, visible: isVisible });
 
         if (isVisible) {
-          const isSelected = selectedCity?.city.id === cityData.city.id;
-          const isHovered = hoveredCity?.city.id === cityData.city.id;
+          const isSelected = currentSelected?.city.id === cityData.city.id;
+          const isHovered = currentHovered?.city.id === cityData.city.id;
 
           // Dot color based on disaster risk
           let dotColor = '#10b981'; // Green
@@ -170,13 +177,12 @@ export const Globe3D: React.FC<Globe3DProps> = ({
           ctx.beginPath();
           ctx.arc(pt.x, pt.y, isSelected ? 5.5 : isHovered ? 4.5 : 3.2, 0, Math.PI * 2);
           ctx.fill();
-
           ctx.strokeStyle = '#ffffff';
           ctx.lineWidth = 1;
           ctx.stroke();
 
           // City Label if selected or zoomed
-          if (isSelected || isHovered || zoomScale > 1.25) {
+          if (isSelected || isHovered || currentZoom > 1.25) {
             ctx.font = '10px "JetBrains Mono", monospace';
             ctx.fillStyle = isSelected ? '#38bdf8' : '#e2e8f0';
             ctx.fillText(
@@ -198,7 +204,7 @@ export const Globe3D: React.FC<Globe3DProps> = ({
     return () => {
       cancelAnimationFrame(animationFrameId);
     };
-  }, [rotation, isRotating, cities, selectedCity, hoveredCity, zoomScale]);
+  }, [cities]);
 
   // Project spherical coordinates to 2D screen coordinates
   function project3D(
@@ -253,10 +259,10 @@ export const Globe3D: React.FC<Globe3DProps> = ({
       const dy = e.clientY - lastMousePosRef.current.y;
       lastMousePosRef.current = { x: e.clientX, y: e.clientY };
 
-      setRotation((prev) => ({
-        x: Math.max(-1.2, Math.min(1.2, prev.x + dy * 0.005)),
-        y: prev.y - dx * 0.005,
-      }));
+      rotationRef.current = {
+        x: Math.max(-1.2, Math.min(1.2, rotationRef.current.x + dy * 0.005)),
+        y: rotationRef.current.y - dx * 0.005,
+      };
     } else {
       // Detect hovered city on the 3D globe
       const hit = projectedPointsRef.current.find((p) => {
@@ -279,7 +285,7 @@ export const Globe3D: React.FC<Globe3DProps> = ({
     const clickX = e.clientX - rect.left;
     const clickY = e.clientY - rect.top;
 
-    // Find closest visible city within click threshold (satisfies "Click any city marker dot on the 3D globe")
+    // Find closest visible city within click threshold
     const hit = projectedPointsRef.current.find((p) => {
       if (!p.visible) return false;
       const dist = Math.hypot(p.x - clickX, p.y - clickY);
@@ -293,10 +299,10 @@ export const Globe3D: React.FC<Globe3DProps> = ({
 
   // Center on India specifically
   const centerOnIndia = () => {
-    setRotation({
+    rotationRef.current = {
       x: 0.38,
       y: -1.38,
-    });
+    };
     setZoomScale(1.15);
   };
 
@@ -324,7 +330,7 @@ export const Globe3D: React.FC<Globe3DProps> = ({
               Interactive 3D Globe
             </span>
             <span className="text-[10px] px-1.5 py-0.5 rounded bg-cyan-950 text-cyan-300 border border-cyan-800">
-              Web Dashboard (5173)
+              Web Dashboard
             </span>
           </div>
           <p className="text-[11px] text-slate-400 leading-relaxed">

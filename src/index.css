@@ -10,7 +10,6 @@
     --accent-amber: #f59e0b;
     --accent-rose: #f43f5e;
   }
-
   body {
     background-color: #07090e;
     color: #f1f5f9;
@@ -73,18 +72,15 @@
   border-radius: 8px !important;
   overflow: hidden;
 }
-
 .leaflet-bar a {
   background-color: rgba(13, 19, 33, 0.92) !important;
   color: #94a3b8 !important;
   border-bottom: 1px solid #1e293b !important;
 }
-
 .leaflet-bar a:hover {
   background-color: #1e293b !important;
   color: #38bdf8 !important;
 }
-
 .leaflet-control-attribution {
   background: rgba(9, 13, 22, 0.85) !important;
   color: #64748b !important;
@@ -94,7 +90,6 @@
   border-left: 1px solid #1e293b !important;
   border-top: 1px solid #1e293b !important;
 }
-
 .leaflet-control-attribution a {
   color: #38bdf8 !important;
 }
@@ -114,7 +109,6 @@
     opacity: 0.9;
   }
 }
-
 .animate-pulse-ring {
   animation: pulse-ring 2.5s cubic-bezier(0, 0, 0.2, 1) infinite;
 }

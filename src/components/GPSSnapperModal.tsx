@@ -4,11 +4,8 @@ import { snapCoordinatesToNearestStation } from '../data/citiesData.ts';
 import {
   Crosshair,
   MapPin,
-  Compass,
   Navigation,
-  CheckCircle2,
   X,
-  Radio,
   ArrowRight,
 } from 'lucide-react';
 

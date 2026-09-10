@@ -11,16 +11,9 @@ import {
   Bot,
   Copy,
   Check,
-  ExternalLink,
   MapPin,
-  Wind,
-  Droplets,
-  Eye,
   Clock,
-  Compass,
   CheckCircle2,
-  AlertTriangle,
-  Send,
   Loader2,
   Sparkles,
 } from 'lucide-react';
@@ -36,7 +29,7 @@ export const CityDetailModal: React.FC<CityDetailModalProps> = ({
   cityData,
   onClose,
   onCropChange,
-  onOpenAIWithCity,
+  onOpenAIWithCity: _onOpenAIWithCity,
 }) => {
   if (!cityData) return null;
 
@@ -60,7 +53,7 @@ export const CityDetailModal: React.FC<CityDetailModalProps> = ({
     { id: 'maize', label: 'Maize', icon: '🌽' },
     { id: 'sugarcane', label: 'Sugarcane', icon: '🎋' },
     { id: 'mustard', label: 'Yellow Mustard', icon: '🌻' },
-    { id: 'pulses', label: 'Pulses', icon: '🫘' },
+    { id: 'pulses', label: 'Pulses', icon: '🌱' },
     { id: 'soybean', label: 'Soybean', icon: '🌱' },
     { id: 'millets', label: 'Millets', icon: '🌾' },
   ];
@@ -79,7 +72,7 @@ export const CityDetailModal: React.FC<CityDetailModalProps> = ({
       });
       const data = await res.json();
       setAiReport(data.report || 'Tactical analysis generated.');
-    } catch (err) {
+    } catch (_err) {
       setAiReport('Could not contact Gemini AI service. Check network or server configuration.');
     } finally {
       setIsAiLoading(false);
@@ -217,7 +210,7 @@ export const CityDetailModal: React.FC<CityDetailModalProps> = ({
                   onClick={() => setAiReport(null)}
                   className="text-slate-400 hover:text-white"
                 >
-                  ✕
+                  <X className="w-4 h-4" />
                 </button>
               </div>
               <div className="text-slate-200 text-xs font-sans whitespace-pre-wrap leading-relaxed">
@@ -257,10 +250,10 @@ export const CityDetailModal: React.FC<CityDetailModalProps> = ({
                   <div className="my-3 flex items-center justify-between">
                     <div>
                       <div className="text-3xl font-extrabold text-white">
-                        {weather.tempC}°<span className="text-xl text-slate-400">C</span>
+                        {weather.tempC}° <span className="text-xl text-slate-400">C</span>
                       </div>
                       <span className="text-xs text-slate-300 font-sans font-medium">
-                        Feels like {weather.feelsLikeC}°C • {weather.condition}
+                        Feels like {weather.feelsLikeC}° • {weather.condition}
                       </span>
                     </div>
                     <div className="text-right text-[11px] text-slate-400">
@@ -535,7 +528,6 @@ export const CityDetailModal: React.FC<CityDetailModalProps> = ({
                 <p className="text-slate-400 text-xs font-sans">
                   The WeatherGPT platform exposes high-frequency REST micro-services for all 130 cities and spatial snapping for any coordinates:
                 </p>
-
                 <div className="space-y-2">
                   <div className="p-2.5 rounded bg-slate-950 border border-slate-800">
                     <div className="flex items-center justify-between text-cyan-300 font-bold">

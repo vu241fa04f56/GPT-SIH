@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { CityModelOutput } from '../types.ts';
-import { Search, MapPin, X, ArrowRight } from 'lucide-react';
+import { Search, ArrowRight } from 'lucide-react';
 
 interface SearchModalProps {
   isOpen: boolean;
